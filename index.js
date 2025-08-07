@@ -40,3 +40,22 @@ document.getElementById("githubLink").addEventListener("click",(event)=>{
     window.open("https://github.com/Druidman/minecraft-clone-opengl", "_blank");
     console.log("GitHub logo clicked");
 })
+
+document.getElementById("infoButton").addEventListener("mouseover",(event)=>{
+
+    let element =  document.getElementById("infoBox")
+    element.style.display = "block";
+    element.style.position = "absolute"
+    let rect = event.currentTarget.getBoundingClientRect();
+    let topPos =  rect.top
+    let leftPos =  rect.left + rect.width
+    element.style.top = `${topPos}px`
+    element.style.left = `${leftPos}px`
+})
+document.getElementById("infoButton").addEventListener("mouseleave",(event)=>{
+    
+    document.getElementById("infoBox").style.display = "none"
+
+})
+
+
