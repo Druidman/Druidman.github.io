@@ -1,3 +1,7 @@
+
+let gameInstance = null;
+
+
 function downloadFile(pathToFile, downloadName){
     let a = document.createElement("a")
     a.href = pathToFile
@@ -28,11 +32,48 @@ document.getElementById("linuxPlayButton").addEventListener("click",(event)=>{
 document.getElementById("windowsPlayButton").addEventListener("click",(event)=>{
     downloadFile("files/minecraftClone-win.zip", "minecraftGame-win.zip")
 })
-document.getElementById("webPlayButton").addEventListener("click",(event)=>{
-    // redirect
+document.getElementById("gameSectionReturn").addEventListener("click",(event)=>{
+    if (gameInstance && gameInstance.shutdown_game) {
+        gameInstance.shutdown_game(); // Call your C++ cleanup function
+        gameInstance = null;
+      }
+
+
+    document.getElementById('websiteSection').style.display = "block";
+    document.getElementById('gameSection').style.display = "none";
+    document.getElementById('gameInfo').style.display = "flex";
+
+   
 })
-document.getElementById("macPlayButton").addEventListener("click",(event)=>{
-    // N/ A
+document.getElementById("startGameButton").addEventListener("click",(event)=>{
+    document.getElementById('gameInfo').style.display = "none"
+    document.getElementById('gameCanvas').style.display = "block"
+    document.getElementById('gameCanvas').focus()
+    
+    MyGame({
+        locateFile: function (path, prefix) {
+        if (path.endsWith(".data")) {
+            return "files/webGame/" + path;
+        }
+        return prefix + path;
+        },
+        canvas: document.getElementById('gameCanvas'),
+    }).then((instance) => {
+      console.log("WASM module loaded.");
+      gameInstance = instance;
+    });
+})
+document.getElementById("webPlayButton").addEventListener("click",(event)=>{
+    document.getElementById('websiteSection').style.display = "none";
+    document.getElementById('gameSection').style.display = "block";
+    
+
+})
+document.getElementById("macPlayButton").addEventListener("mouseover",(event)=>{
+    popInfoBox();
+})
+document.getElementById("macPlayButton").addEventListener("mouseleave",(event)=>{
+    hideInfoBox();
 })
 
 
@@ -42,20 +83,28 @@ document.getElementById("githubLink").addEventListener("click",(event)=>{
 })
 
 document.getElementById("infoButton").addEventListener("mouseover",(event)=>{
-
-    let element =  document.getElementById("infoBox")
-    element.style.display = "block";
-    element.style.position = "absolute"
-    let rect = event.currentTarget.getBoundingClientRect();
-    let topPos =  rect.top
-    let leftPos =  rect.left + rect.width
-    element.style.top = `${topPos}px`
-    element.style.left = `${leftPos}px`
+    popInfoBox();
+    
 })
 document.getElementById("infoButton").addEventListener("mouseleave",(event)=>{
     
     document.getElementById("infoBox").style.display = "none"
 
 })
+
+function popInfoBox(){
+    let element =  document.getElementById("infoBox")
+    element.style.display = "block";
+    element.style.position = "absolute"
+    let rect = document.getElementById("infoButton").getBoundingClientRect();
+    let topPos =  rect.top
+    let leftPos =  rect.left + rect.width
+    element.style.top = `${topPos}px`
+    element.style.left = `${leftPos}px`
+}
+function hideInfoBox(){
+    document.getElementById("infoBox").style.display = "none"
+}
+
 
 

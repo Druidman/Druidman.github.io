@@ -11,55 +11,80 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
+
+    <!-- Required for SharedArrayBuffer & threading -->
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
 </head>
 <body>
-    <main>
-        <div class="mainBox" id="welcomeScreen">
-            <h1>MinecraftClone</h1>
-            <div>
+    <section class="mainSection" id="websiteSection">
+        <main>
+            <div class="mainBox" id="welcomeScreen">
+                <h1>MinecraftClone</h1>
+                <div>
+                    
+                    <button id="playButton">Play</button>
+                    
+                    
+                </div>
                 
-                <button id="playButton">Play</button>
+            </div>
+            <div class="mainBox" id="gameSelector" style="display: none;">
+                
+                    
+                <h1>Select platform</h1>
+           
+                
+                <div id="gameList">
+                    <button class="playSelectButton" id="linuxPlayButton"> Linux </button>
+                    <button class="playSelectButton" id="windowsPlayButton"> Windows </button>
+                    <button class="playSelectButton" id="webPlayButton"> Web </button>
+                    <button class="playSelectButton" id="macPlayButton"> Mac </button>
+                </div>
+                <div id="gameSelectorButtons" >
+                    <button id="returnToHomePage"><-</button>
+                    <button id="infoButton">i</button>
+    
+                </div>
+    
                 
                 
             </div>
             
+            
+        </main>
+        <footer>
+            <div id="githubLink">
+                <img  id="githubLogo" github-logo src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo" crossorigin="anonymous">
+            </div>
+        </footer>
+        <div id="infoBox" style="display: none;">
+            <p>Linux - avaiable</p>
+            <p>Windows - avaiable</p>
+            <p>Web - avaiable (early beta)</p>
+            <p>Mac - not available</p>
         </div>
-        <div class="mainBox" id="gameSelector" style="display: none;">
-            
-                
-            <h1>Select platform</h1>
-       
-            
-            <div id="gameList">
-                <button class="playSelectButton" id="linuxPlayButton"> Linux </button>
-                <button class="playSelectButton" id="windowsPlayButton"> Windows </button>
-                <button class="playSelectButton" id="webPlayButton"> Web </button>
-                <button class="playSelectButton" id="macPlayButton"> Mac </button>
+    </section>
+    <section class="mainSection" id="gameSection" style="display: none;">
+        <button id="gameSectionReturn">Return to website</button>
+        <section id="gameInfo">
+            <div id="gameWarning" class="mainBox">
+                Web version of the game is in early BETA!<br>
+                There are a lot of features missing due to performance reasons including: <br>
+                    - placing / destroying blocks<br>
+                    - infinite world gen (loading new chunks)<br>
+                For fully working game version head BACK to game download page or compile game from source.
             </div>
-            <div id="gameSelectorButtons" >
-                <button id="returnToHomePage"><-</button>
-                <button id="infoButton">i</button>
+            <button id="startGameButton">PLAY</button>
+            
+        </section>
+        <canvas id="gameCanvas" oncontextmenu="event.preventDefault()" tabindex="0" style="display: none;"></canvas>
+    </section>
 
-            </div>
 
-            
-            
-        </div>
-        
-        
-    </main>
-    <footer>
-        <div id="githubLink">
-            <img  id="githubLogo" github-logo src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo">
-        </div>
-    </footer>
-    <div id="infoBox" style="display: none;">
-        <p>Linux - avaiable</p>
-        <p>Windows - avaiable</p>
-        <p>Web - coming soon...</p>
-        <p>Mac - not available</p>
-    </div>
+    
     
 </body>
 <script src="index.js"></script>
+<script src="files/webGame/game.js"></script>
 </html>

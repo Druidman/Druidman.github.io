@@ -29,6 +29,11 @@ body {
     flex-direction: column;
     background-color: #2d2d2d;
 }
+.mainSection {
+    width: 100%;
+    height: 100%;
+}
+
 
 main{
     width: 100%;
@@ -209,4 +214,54 @@ footer div:hover {
     height: fit-content;
     font-size: 1.5vw;
     border-radius: 5%;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 95%;
+}
+#gameSectionReturn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    width: 100%;
+    height: 5%;
+}
+
+#gameInfo {
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#gameWarning{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 50%;
+    height: 50%;
+    font-size: 1em;
+    overflow: scroll;
+    overflow-x: scroll;
+}
+#startGameButton {
+    width: 50%;
+    height: 10%;
+    
+    border: 2px solid #d98b00;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    transition: 300ms;
+}
+#startGameButton:hover {
+    width: 100%;
 }
